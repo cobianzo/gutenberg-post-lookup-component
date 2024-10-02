@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"outDir": "./dist",
+		"target": "es5",
+		"module": "esnext",
+		"moduleResolution": "node",
+		"lib": [ "dom", "dom.iterable", "esnext" ],
+		"jsx": "react-jsx",
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true
+	},
+	"include": [ "src/**/*", "test-block/**/*" ],
+	"exclude": [ "node_modules", "dist", "**/*.spec.ts" ]
+}

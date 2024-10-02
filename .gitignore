@@ -1,0 +1,13 @@
+*.log
+*.pot
+*.po
+*.mo
+vendor/
+node_modules/
+.env
+.env.test
+wp-content/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

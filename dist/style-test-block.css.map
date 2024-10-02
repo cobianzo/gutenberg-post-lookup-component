@@ -1,0 +1,1 @@
+{"version":3,"file":"./style-test-block.css","mappings":";;;AAAA;CACC,yBAAyB;AAC1B","sources":["webpack://gutenberg-post-selector-component/./test-block/src/style.css"],"sourcesContent":["body {\n\tborder: 10px solid orange;\n}\n"],"names":[],"sourceRoot":""}

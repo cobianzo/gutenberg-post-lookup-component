@@ -1,0 +1,40 @@
+{
+	"name": "gutenberg-post-selector-component",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"wp-env": "wp-env",
+		"up": "wp-env start",
+		"down": "wp-env stop",
+		"destroy": "wp-env destroy",
+		"build": "wp-scripts build",
+		"start": "wp-scripts start",
+		"test:e2e": "playwright test",
+		"test:unit": "wp-scripts test-unit-js",
+		"lint:js": "wp-scripts lint-js",
+		"lint:css": "wp-scripts lint-style",
+		"lint:php": "phpcs",
+		"lint:php:fix": "phpcbf",
+		"lint:php:stan": "phpstan analyse"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"engines": {
+		"node": ">=20.10.0",
+		"npm": ">=10.2.3"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.47.2",
+		"@types/node": "^22.7.4",
+		"@types/react": "^18.3.11",
+		"@types/wordpress__block-editor": "^11.5.15",
+		"@wordpress/eslint-plugin": "^21.1.2",
+		"@wordpress/prettier-config": "^4.8.1",
+		"@wordpress/scripts": "^30.0.2",
+		"ajv": "^8.17.1",
+		"eslint-config-prettier": "^9.1.0",
+		"stylelint": "^16.9.0"
+	}
+}
