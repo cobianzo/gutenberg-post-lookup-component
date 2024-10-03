@@ -1,6 +1,6 @@
 {
-	"editor.formatOnSave": true,
-	"editor.defaultFormatter": "persoderlind.vscode-phpcbf",
+	"editor.formatOnSave": false,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"phpcs.enable": true,
 	"phpcs.executablePath": "./vendor/bin/phpcs",
 	"phpcs.standard": "./.phpcs.xml.dist",
@@ -13,12 +13,18 @@
 	"phpcbf.executablePath": "./vendor/bin/phpcbf",
 	"phpcbf.standard": "./.phpcs.xml.dist",
 	"eslint.run": "onType",
-  "prettier.prettierPath": "./node_modules/prettier",
 	"[typescript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.formatOnSave": false,
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.codeActionsOnSave": {
+			"source.fixAll.eslint": "explicit"
+		}
 	},
 	"[php]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
 	},
 	"intelephense.phpdoc.propertyTemplate": {
 		"summary": "$1",
@@ -26,5 +32,28 @@
 	},
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	}
+	},
+	"[markdown]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"workbench.colorCustomizations": {
+		"activityBar.activeBackground": "#93e6fc",
+		"activityBar.background": "#93e6fc",
+		"activityBar.foreground": "#15202b",
+		"activityBar.inactiveForeground": "#15202b99",
+		"activityBarBadge.background": "#fa45d4",
+		"activityBarBadge.foreground": "#15202b",
+		"commandCenter.border": "#15202b99",
+		"sash.hoverBorder": "#93e6fc",
+		"statusBar.background": "#61dafb",
+		"statusBar.foreground": "#15202b",
+		"statusBarItem.hoverBackground": "#2fcefa",
+		"statusBarItem.remoteBackground": "#61dafb",
+		"statusBarItem.remoteForeground": "#15202b",
+		"titleBar.activeBackground": "#61dafb",
+		"titleBar.activeForeground": "#15202b",
+		"titleBar.inactiveBackground": "#61dafb99",
+		"titleBar.inactiveForeground": "#15202b99"
+	},
+	"peacock.color": "#61dafb"
 }

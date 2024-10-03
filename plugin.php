@@ -15,6 +15,6 @@
 
 // Register the test block using block.json
 // It will help us to test our component.
-add_action( 'init', function() {
-    register_block_type( __DIR__ . '/test-block/block.json' );
+add_action( 'init', function () {
+	register_block_type( __DIR__ . '/src/test-block/block.json' );
 } );

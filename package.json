@@ -11,11 +11,15 @@
 		"start": "wp-scripts start",
 		"test:e2e": "playwright test",
 		"test:unit": "wp-scripts test-unit-js",
-		"lint:js": "wp-scripts lint-js",
-		"lint:css": "wp-scripts lint-style",
-		"lint:php": "phpcs",
+		"lint:js": "wp-scripts lint-js './src/**/*.{js,jsx,ts,tsx}'",
+		"lint:style": "wp-scripts lint-style './src/**/*.{css,scss}'",
+		"lint:php": "wp-scripts lint-php .",
+		"lint:phpcs": "phpcs",
 		"lint:php:fix": "phpcbf",
-		"lint:php:stan": "phpstan analyse"
+		"lint:php:stan": "phpstan analyse",
+		"lint": "npm run lint:js && npm run lint:style && npm run lint:php",
+		"format:js": "wp-scripts format-js ./src",
+		"format": "npm run format:js && npm run format:php"
 	},
 	"keywords": [],
 	"author": "",
@@ -30,11 +34,22 @@
 		"@types/node": "^22.7.4",
 		"@types/react": "^18.3.11",
 		"@types/wordpress__block-editor": "^11.5.15",
+		"@types/wordpress__data": "^6.0.2",
+		"@typescript-eslint/eslint-plugin": "^8.8.0",
+		"@typescript-eslint/parser": "^8.8.0",
 		"@wordpress/eslint-plugin": "^21.1.2",
 		"@wordpress/prettier-config": "^4.8.1",
 		"@wordpress/scripts": "^30.0.2",
 		"ajv": "^8.17.1",
-		"eslint-config-prettier": "^9.1.0",
-		"stylelint": "^16.9.0"
+		"eslint-import-resolver-typescript": "^3.6.3",
+		"eslint-plugin-import": "^2.31.0",
+		"eslint-plugin-prettier": "^5.2.1",
+		"stylelint": "^16.9.0",
+		"ts-loader": "^9.5.1",
+		"typescript": "^5.6.0"
+	},
+	"dependencies": {
+		"@wordpress/api-fetch": "^7.8.0",
+		"styled-components": "^6.1.13"
 	}
 }

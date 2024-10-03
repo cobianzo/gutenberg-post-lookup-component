@@ -17,8 +17,8 @@ Technologies I want to use:
 
 This component is going to be a Text lookup input field. When typing in the input field, it will debounce the input before starting to look up. In the look up, it will search for the posts containing in their title the string that has been typed (the results will be trimmed to a max of 10). Then the user can use the arrows to select any of the results, when clicking return, that post id will be selected, the input will be cleared, and the post Title will be shown below the input.
 It will also receive two mandatory props:
-`selectedPost` as the ID of the current post, if any.
-`updateSelectedPost = ( selectedPost ) => void`, and it's responsability of the parent to update the `selectedPost` property when it's called.
+`selectedPostId` as the ID of the current post, if any.
+`updateSelectedPostId = ( postId ) => void`, and it's responsability of the parent to update the `selectedPostId` property when it's called.
 
 # First step:
 
@@ -26,5 +26,25 @@ Show me the steps that we will follow, to setup the project with wp-env, in type
 
 # Second step:
 
-I have already created the enviornment, and I have my local running in localhost:8888. My linting are working more or less ok (phpcs, phpcbf, eslint, stylelint). I didn't check phpstan yet.
+I have already created the enviornment:
+
+```
+WordPress development site started at http://localhost:8888/
+WordPress test site started at http://localhost:8889/
+MySQL is listening on port 52332
+MySQL for automated testing is listening on port 52334
+```
+
+My linting are working more or less ok (phpcs, phpcbf, eslint, stylelint). I didn't check phpstan yet.
 The compiling works ok, `npm run start` runs the wp-scripts and compiles int `dist/*js`
+Remebmer that folder, and consider that it's not `/build` (it's `/dist` instead).
+
+My `webpack.config.js` has been adpated to compile the typescript for my test block, and the ts related to my lookup component.
+I didn't include the ts-loader plugin
+The block works ok and I can insert it in the editor.
+
+Now, I want to develop the lookup post component. And when it's finished, I want to be able to convert it into a package, so the distribution js should be in an independent js file that I can import from another script.
+
+show me the files structure I should follow
+
+NOW: Help me to set up the development environment for developing a plugin including a block in typescript. What changes should I do? I guess I need to install some packages and adapt tsconfig.json and the linting, .eslintrc, isnt it?
