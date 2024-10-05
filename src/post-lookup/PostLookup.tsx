@@ -10,9 +10,10 @@ import StyledPostLookup from './PostLookup.styles';
 import useDebounce from './useDebounce';
 import usePostSearch from './usePostSearch';
 import usePost from './usePost';
-
-import type { WPPost } from './types';
 import XButton from './XButton';
+
+// Types
+import type { WPPost } from './types';
 
 interface PostLookupProps {
 	selectedPostId: number | null;
