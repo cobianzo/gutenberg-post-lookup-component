@@ -1,2 +1,4 @@
-// Starting point for out PostLookup component.
-export { default as PostLookup } from './PostLookup';
+// Starting point for our PostLookup component.
+import PostLookup from './PostLookup';
+
+export default PostLookup;

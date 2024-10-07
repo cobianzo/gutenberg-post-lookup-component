@@ -1,13 +1,23 @@
+// WordPress dependencies
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
-import type { WPPost } from './types';
 
+// Types
+import type { WPPost } from './types';
+// Inline types
 interface PostSearchResult {
 	posts: WPPost[];
 	loading: boolean;
 	error: string | null;
 }
 
+/**
+ * Given the search term string, returns the list of matching posts.
+ * It uses the apiFetch API of WP to retrieve the result
+ *
+ * @param searchTerm
+ * @return
+ */
 function usePostSearch( searchTerm: string | null ): PostSearchResult {
 	const [ posts, setPosts ] = useState< WPPost[] >( [] );
 	const [ loading, setLoading ] = useState< boolean >( false );

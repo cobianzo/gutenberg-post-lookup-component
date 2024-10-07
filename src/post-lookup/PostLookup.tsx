@@ -4,15 +4,17 @@ import { TextControl, Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 // external deps and styles
-import StyledPostLookup from './PostLookup.styles';
+import './post-lookup-styles.css';
 
 // Internal deps
 import useDebounce from './useDebounce';
 import usePostSearch from './usePostSearch';
 import usePost from './usePost';
+
+// Internal component deps
 import XButton from './XButton';
 
-// Types
+//Types
 import type { WPPost } from './types';
 
 interface PostLookupProps {
@@ -53,26 +55,24 @@ const PostLookup: React.FC< PostLookupProps > = ( props ) => {
 
 	// JSX ============= ============= =============
 	return (
-		<StyledPostLookup>
-			<div className="post-lookup">
+		<div className="coco__post-lookup">
 
-				{ /*
-						1 ) The is no selected post:
+			{ /*
+						1 ) There is no selected post:
 				*/ }
 
-				{ ! selectedPostId && (
-					<div className="post-lookup__preview">
-						<p>No post selected</p>
-					</div>
-				) }
+			<div className="post-lookup__preview">
+				{ ! selectedPostId ? <p>No post selected</p> : <p>&nbsp;</p> }
+			</div>
 
-				{ /*
+			{ /*
 						3 ) Show the selected post
 				*/ }
 
-				{ selectedPostId && selectedPostObject?.id && searchTerm === null ? (
-					<div className="post-lookup__preview">
-						<p>SELECTED POST:</p>
+			{ selectedPostId && selectedPostObject?.id && searchTerm === null ? (
+				<div className="post-lookup__preview">
+					<p>SELECTED POST:</p>
+					<div className="post-lookup__inner-row">
 						<button
 							className="button--unstyled"
 							onClick={ () => {
@@ -82,52 +82,53 @@ const PostLookup: React.FC< PostLookupProps > = ( props ) => {
 							<span className="dashicons dashicons-edit"></span>
 							{ selectedPostObject.title.rendered }
 						</button>
+						{ selectedPostId > 0 ? <XButton onClick={ () => props.updateSelectedPostId( 0 ) } /> : 'No' }
 					</div>
+				</div>
 
-				) : (
-					<>
+			) : (
+				<>
 
-						{ /*
+					{ /*
 							2 ) Show the input to change selected post
 						*/ }
 
-						<TextControl
-							label={ __( 'Search for a post', 'coco' ) }
-							value={ searchTerm || '' }
-							onChange={ handleInputChange }
-							placeholder={ __( 'Search…', 'coco' ) }
-							ref={ textControlRef }
-						/>
-						<XButton onClick={ () => setSearchTerm( null ) } />
+					<TextControl
+						label={ __( 'Search for a post', 'coco' ) }
+						value={ searchTerm || '' }
+						onChange={ handleInputChange }
+						placeholder={ __( 'Search…', 'coco' ) }
+						ref={ textControlRef }
+					/>
+					<XButton onClick={ () => setSearchTerm( null ) } />
 
-						{ loading && <Spinner /> }
-						{ error && (
-							<div className="notice notice-error">
-								<p>{ __( 'Error:', 'coco' ) + error }</p>
-							</div>
-						) }
-						{ postResults.length > 0 && (
-							<ul>
-								{ postResults.map( ( post: WPPost ) => (
-									<li key={ post.id }>
-										<button
-											className="button--unstyled"
-											onClick={ () => handleSelectPost( post.id ) }
-										>
-											{ post.title.rendered }
-										</button>
-									</li>
-								) ) }
-							</ul>
-						) }
+					{ loading && <Spinner /> }
+					{ error && (
+						<div className="notice notice-error">
+							<p>{ __( 'Error:', 'coco' ) + error }</p>
+						</div>
+					) }
+					{ postResults.length > 0 && (
+						<ul>
+							{ postResults.map( ( post: WPPost ) => (
+								<li key={ post.id }>
+									<button
+										className="button--unstyled"
+										onClick={ () => handleSelectPost( post.id ) }
+									>
+										{ post.title.rendered }
+									</button>
+								</li>
+							) ) }
+						</ul>
+					) }
 
-						{ selectedPostId ? (
-							<p> { __( 'Selected post ID:', 'coco' ) + selectedPostId } </p>
-						) : null }
-					</>
-				) }
-			</div>
-		</StyledPostLookup>
+					{ selectedPostId ? (
+						<p> { __( 'Selected post ID:', 'coco' ) + selectedPostId } </p>
+					) : null }
+				</>
+			) }
+		</div>
 	);
 };
 

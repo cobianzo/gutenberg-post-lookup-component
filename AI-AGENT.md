@@ -48,3 +48,61 @@ Now, I want to develop the lookup post component. And when it's finished, I want
 show me the files structure I should follow
 
 NOW: Help me to set up the development environment for developing a plugin including a block in typescript. What changes should I do? I guess I need to install some packages and adapt tsconfig.json and the linting, .eslintrc, isnt it?
+
+# Third step:
+
+Now it's time to start the end to end testing, using playwright.
+Tell me the steps to follow
+
+I want to create an e2e test for my gutenberg component and gutenberg block, both in a plugin. Everything is setup with playwright, and Iwant to use the funcions provided by @wordpress/e2e-test-utils-playwright. Hel me to create the e2e test, which shuld include small tests. Use  test.beforeEach to login, and create a post for every subsequent test.
+
+# Fourth step:
+
+I want to be able to convert it into a package, so the distribution js should be in an independent js file that I can import from another script.
+
+# Fifth step:
+
+
+
+=====
+
+# Tree:
+
+.
+├── AI-AGENT.md
+├── README.md
+├── composer.json
+├── composer.lock
+├── package-lock.json
+├── package.json
+├── phpstan.neon
+├── playwright.config.ts
+├── plugin.php
+├── schemas
+│   └── json
+│       └── wp-env.json
+├── src
+│   ├── post-lookup
+│   │   ├── PostLookup.styles.ts
+│   │   ├── PostLookup.tsx
+│   │   ├── XButton.tsx
+│   │   ├── index.ts
+│   │   ├── types.d.ts
+│   │   ├── useDebounce.ts
+│   │   ├── usePost.ts
+│   │   └── usePostSearch.ts
+│   └── test-block
+│       ├── Edit.tsx
+│       ├── block.json
+│       ├── index.ts
+│       ├── render.php
+│       ├── save.tsx
+│       ├── style.css
+│       └── types
+│           └── types.d.ts
+├── tests
+│   └── example.spec.ts
+├── tests-examples
+│   └── demo-todo-app.spec.ts
+├── tsconfig.json
+└── webpack.config.js

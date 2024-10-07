@@ -1,8 +1,15 @@
+// React and WordPress dependencies
 import { useState } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 
+// Types
 import type { WPPost, CoreSelectors } from './types';
 
+/**
+ * Given the post ID, returns the full post object.
+ * @param postId
+ * @return
+ */
 export default function usePost( postId: number | null ) {
 	const [ isLoading, setIsLoading ] = useState( false );
 

@@ -1,10 +1,14 @@
 {
-	"name": "gutenberg-post-selector-component",
-	"version": "1.0.0",
-	"main": "index.js",
+	"name": "@cobianzo/gutenberg-post-lookup-component",
+	"version": "1.1.0",
+	"main": "dist/post-lookup.js",
+	"style": "dist/post-lookup.css",
+	"files": [
+		"dist"
+	],
+	"private": false,
 	"scripts": {
-		"wp-env": "wp-env",
-		"up": "wp-env start",
+		"up": "WP_ENV_PORT=3333 WP_ENV_TESTS_PORT=3334 wp-env start",
 		"down": "wp-env stop",
 		"destroy": "wp-env destroy",
 		"build": "wp-scripts build",
@@ -21,13 +25,13 @@
 		"format:js": "wp-scripts format-js ./src",
 		"format": "npm run format:js && npm run format:php"
 	},
-	"keywords": [],
-	"author": "",
+	"keywords": ["gutenberg", "search post", "component"],
+	"author": "@cobianzo",
 	"license": "ISC",
-	"description": "",
+	"description": "Code for an npm package that allows searching for posts in the Gutenberg editor",
 	"engines": {
-		"node": ">=20.10.0",
-		"npm": ">=10.2.3"
+		"node": ">=18.20.4",
+		"npm": ">=10.7.0"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.47.2",
@@ -49,7 +53,10 @@
 		"typescript": "^5.6.0"
 	},
 	"dependencies": {
+		"@wordpress/api-fetch": "^7.8.0"
+	},
+	"peerDependencies": {
 		"@wordpress/api-fetch": "^7.8.0",
-		"styled-components": "^6.1.13"
+		"@wordpress/element": "^5.0.0"
 	}
 }
