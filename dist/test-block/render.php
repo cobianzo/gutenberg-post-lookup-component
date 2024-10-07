@@ -4,12 +4,16 @@
  *
  * @package post-lookup-component
  */
+
 // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
-// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-?>
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound ?>
+
 <div <?php echo get_block_wrapper_attributes(); ?>>
+
 <?php
-	$coco_post_id = isset( $attributes['postID'] ) ? $attributes['postID'] : 0;
+
+$coco_post_id = isset( $attributes['postID'] ) ? $attributes['postID'] : 0;
+
 if ( ! empty( $coco_post_id ) ) {
 	$post_object = get_post( $coco_post_id );
 	if ( $post_object ) {
@@ -21,6 +25,7 @@ if ( ! empty( $coco_post_id ) ) {
 		wp_reset_postdata();
 	}
 }
+
 ?>
 
 </div>
