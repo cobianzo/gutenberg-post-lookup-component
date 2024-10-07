@@ -13,6 +13,14 @@
  * @package post-lookup-component
  */
 
+/**
+ * The plugin side of this repo is mostly irrelevant.
+ * It is used to create a custom block where we can test the component.
+ *
+ * While the main scope of this repo is to create an npm package with the component,
+ * the plugin side is used exclusively to test the component.
+ */
+
 // Register the test block using block.json
 // It will help us to test our component, inserting it with <PostLookup />.
 add_action( 'init', function () {

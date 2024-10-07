@@ -11,5 +11,7 @@ wp-content/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
-/build/
+/build/*
 /artifacts/
+/tests/e2e/__snapshots__
+/build

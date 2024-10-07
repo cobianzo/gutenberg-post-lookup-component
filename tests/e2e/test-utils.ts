@@ -1,8 +1,14 @@
 import { Page } from '@playwright/test';
 import { Admin } from '@wordpress/e2e-test-utils-playwright';
 
-export async function createAndPublishPost( page: Page, admin: Admin, title: string ): Promise<string> {
-	await page.goto( '/wp-admin/post-new.php' );
+export async function createAndPublishPost(
+	page: Page,
+	admin: Admin,
+	title: string,
+	postType: string = 'post'
+): Promise<string> {
+	await admin.visitAdminPage( 'post-new.php?post_type=' + postType + '' );
+
 	await admin.createNewPost( { title } );
 
 	// Click the "Publish" button

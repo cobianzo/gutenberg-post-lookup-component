@@ -14,6 +14,7 @@ interface PostSearchResult {
 /**
  * Given the search term string, returns the list of matching posts.
  * It uses the apiFetch API of WP to retrieve the result
+ * - @TODO: accept query params from the componennt, not only the string.
  *
  * @param {string | null} searchTerm - The search term to search for posts.
  * @return {PostSearchResult} The list of matching posts.
@@ -33,9 +34,7 @@ function usePostSearch( searchTerm: string | null ): PostSearchResult {
 		setError( null );
 
 		apiFetch< WPPost[] >( {
-			path: `/wp/v2/posts?search=${ encodeURIComponent(
-				searchTerm
-			) }&per_page=10`,
+			path: `/wp/v2/posts?search=${ encodeURIComponent( searchTerm ) }&per_page=10`,
 		} )
 			.then( ( results ) => {
 				setPosts( results );

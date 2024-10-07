@@ -2,13 +2,13 @@ const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 const path = require( 'path' );
 
 module.exports = [
-	// setup for the component to distribute as npm package
+	// 1) setup for the component to distribute as npm package
 	{
 		...defaultConfig,
 		mode: 'production',
 		devtool: false,
 		optimization: {
-			minimize: false, // Deshabilita la minimización
+			minimize: true, // If you want to debug the exit
 		},
 		entry: {
 			'post-lookup': path.resolve( __dirname, 'src/post-lookup/index.ts' ),
@@ -36,7 +36,7 @@ module.exports = [
 					test: /\.js$/,
 					use: [ 'source-map-loader' ],
 					enforce: 'pre',
-					exclude: [ /node_modules/, /gutenberg-post-selector-component\/dist/ ], // Excluir este archivo específico
+					exclude: [ /node_modules/, /gutenberg-post-selector-component\/dist/ ],
 				},
 			],
 		},
@@ -66,7 +66,7 @@ module.exports = [
 			'@wordpress/element': '@wordpress/element',
 		},
 	},
-	// Configuración para el bloque de prueba, created into build.
+	// 2) Configuration for the test block, compiled into build.
 	{
 		...defaultConfig,
 		entry: {

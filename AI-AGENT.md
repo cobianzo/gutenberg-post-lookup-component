@@ -94,8 +94,7 @@ and the tree strucure is:
 ├── dist   # This is what I want to export
 │   ├── post-lookup-rtl.css
 │   ├── post-lookup.asset.php
-│   ✅ ─ post-lookup.css
-│   ✅ ─ post-lookup.js
+│   ✅ ─ post-lookup.js  # This is the file that exports the component, the one we need.
 │   ├── post-lookup.js.map
 │   ├── style-post-lookup-rtl.css
 │   ├── style-post-lookup.css

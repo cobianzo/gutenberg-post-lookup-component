@@ -1,3 +1,6 @@
+/**
+ * CSS in JS
+ */
 const postLookupStyles = `
   .coco__post-lookup {
     position: relative;

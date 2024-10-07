@@ -1,3 +1,4 @@
+// Generated with AI.
 export interface WPPost {
 	id: number; // Unique identifier for the post
 	date: string; // Date of publication

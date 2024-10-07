@@ -16,9 +16,10 @@ test.describe( 'TEST E2E <PostLookup>', () => {
 		await expect( page ).toHaveTitle( /Dashboard/ );
 	} );
 
-	test( 'Go to New Post and Create new post', async ( { admin, page } ) => {
+	// Test 1.
+	test( 'Go to New Post and Create new post', async ( { admin, page, editor } ) => {
 		const postTitles = [
-			'First Test Post',
+			'First Test Posts',
 		];
 
 		for ( const title of postTitles ) {
@@ -27,15 +28,35 @@ test.describe( 'TEST E2E <PostLookup>', () => {
 
 			// Verify the post is published
 			await page.goto( postUrl );
-			await expect( page.locator( 'h1.entry-title' ) ).toHaveText( title );
+			await expect( page.locator( 'h1.wp-block-post-title' ) ).toHaveText( title );
 
 			console.log( `Successfully published post: ${ title }` );
 		}
+
+		// Create a new page
+		const pageTitle = 'My own page';
+		const pageUrl = await createAndPublishPost( page, admin, pageTitle, 'page' );
+
+		// Go to the page and add a block with text
+		await editor.insertBlock( { name: 'core/paragraph' } );
+		await page.keyboard.type( 'Hello World!' );
+
+		await page.keyboard.press( 'Enter' );
+		await page.keyboard.type( '/coco' );
+		await expect( page.locator( '.components-popover__content' ) ).toBeVisible();
+
+		// expect( await editor.getEditedPostContent() ).toMatchSnapshot();
+
+		// Save changes
+		await page.click( 'button.editor-post-publish-button' );
+		await page.waitForSelector( '.components-snackbar', { state: 'visible' } );
+
+		// Verify the post is published
+		await page.goto( pageUrl );
+		await expect( page.locator( 'h1.wp-block-post-title' ) ).toHaveText( pageTitle );
 	} );
 
 	// Create 5 random posts
-
-	// Create a page
 
 	// Insert the test block
 
