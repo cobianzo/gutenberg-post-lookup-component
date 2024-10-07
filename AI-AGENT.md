@@ -54,39 +54,69 @@ NOW: Help me to set up the development environment for developing a plugin inclu
 Now it's time to start the end to end testing, using playwright.
 Tell me the steps to follow
 
-I want to create an e2e test for my gutenberg component and gutenberg block, both in a plugin. Everything is setup with playwright, and Iwant to use the funcions provided by @wordpress/e2e-test-utils-playwright. Hel me to create the e2e test, which shuld include small tests. Use  test.beforeEach to login, and create a post for every subsequent test.
+I want to create an e2e test for my gutenberg component and gutenberg block, both in a plugin. Everything is setup with playwright, and Iwant to use the funcions provided by @wordpress/e2e-test-utils-playwright. Hel me to create the e2e test, which shuld include small tests. Use test.beforeEach to login, and create a post for every subsequent test.
 
 # Fourth step:
 
-I want to be able to convert it into a package, so the distribution js should be in an independent js file that I can import from another script.
+I want to convert my project into an npm package. The `dist` folder should be distributed so I can import <PostLookup> from any other Gutenberg project, just installing the package and importing the component into Edit.jsx
 
-# Fifth step:
+# Introduction for any future task to ask to an AI agent
 
+I have created a new component for Gutenberg that I can include inside the <InspectorControls> component.
+The component is called <PostLookup />
+I have created a simple plugin with just a block called `post-lookup-test-block`, that uses that component in the Inspector controls, showing the selected post.
+I have started the plugin with `plugin.php`.
+The textdomain is `coco`.
+I compile everything using `@wordpress/scripts`
 
+My package.json for the component starts by:
 
-=====
+```
+{
+    "name": "@cobianzo/gutenberg-post-lookup-component",
+    "version": "1.0.1",
+    "main": "dist/post-lookup.js",
+    "style": "dist/post-lookup.css",
+    "files": [
+        "dist"
+    ],
+    "private": false,
+```
 
-# Tree:
+and the tree strucure is:
 
-.
-├── AI-AGENT.md
-├── README.md
+```
+├── build   # This is just for the development of this repo. It's not exported
+│   ├── style-test-block.css
+│   ├── test-block.asset.php
+│   ├── test-block.css
+│   ├── test-block.js
+├── dist   # This is what I want to export
+│   ├── post-lookup-rtl.css
+│   ├── post-lookup.asset.php
+│   ✅ ─ post-lookup.css
+│   ✅ ─ post-lookup.js
+│   ├── post-lookup.js.map
+│   ├── style-post-lookup-rtl.css
+│   ├── style-post-lookup.css
+│   ├── style-test-block-rtl.css
+│   ├── style-test-block.css
+│   ├── style-test-block.css.map
+│   ├── test-block
+│   │   ├── block.json
+│   │   └── render.php
+│   ├── test-block.asset.php
+│   ├── test-block.js
+│   └── test-block.js.map
 ├── composer.json
-├── composer.lock
-├── package-lock.json
 ├── package.json
-├── phpstan.neon
 ├── playwright.config.ts
 ├── plugin.php
-├── schemas
-│   └── json
-│       └── wp-env.json
 ├── src
-│   ├── post-lookup
-│   │   ├── PostLookup.styles.ts
+│   ├── post-lookup   # This folder is the one that generates the /dist files
 │   │   ├── PostLookup.tsx
-│   │   ├── XButton.tsx
 │   │   ├── index.ts
+│   │   ├── post-lookup-styles.css
 │   │   ├── types.d.ts
 │   │   ├── useDebounce.ts
 │   │   ├── usePost.ts
@@ -101,8 +131,14 @@ I want to be able to convert it into a package, so the distribution js should be
 │       └── types
 │           └── types.d.ts
 ├── tests
+│   ├── e2e
+│   │   ├── post-lookup-block.spec.ts
+│   │   └── test-utils.ts
 │   └── example.spec.ts
-├── tests-examples
-│   └── demo-todo-app.spec.ts
 ├── tsconfig.json
 └── webpack.config.js
+
+```
+
+
+

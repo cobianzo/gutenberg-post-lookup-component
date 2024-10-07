@@ -1,6 +1,6 @@
 {
 	"name": "@cobianzo/gutenberg-post-lookup-component",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"main": "dist/post-lookup.js",
 	"style": "dist/post-lookup.css",
 	"files": [
@@ -16,14 +16,12 @@
 		"test:e2e": "playwright test",
 		"test:unit": "wp-scripts test-unit-js",
 		"lint:js": "wp-scripts lint-js './src/**/*.{js,jsx,ts,tsx}'",
-		"lint:style": "wp-scripts lint-style './src/**/*.{css,scss}'",
+		"lint:css": "wp-scripts lint-style './src/**/*.{css,scss}'",
 		"lint:php": "wp-scripts lint-php .",
 		"lint:phpcs": "phpcs",
 		"lint:php:fix": "phpcbf",
 		"lint:php:stan": "phpstan analyse",
-		"lint": "npm run lint:js && npm run lint:style && npm run lint:php",
-		"format:js": "wp-scripts format-js ./src",
-		"format": "npm run format:js && npm run format:php"
+		"lint": "npm run lint:js && npm run lint:css"
 	},
 	"keywords": ["gutenberg", "search post", "component"],
 	"author": "@cobianzo",

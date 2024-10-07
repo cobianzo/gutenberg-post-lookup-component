@@ -6,9 +6,9 @@ import { useSelect } from '@wordpress/data';
 import type { WPPost, CoreSelectors } from './types';
 
 /**
- * Given the post ID, returns the full post object.
- * @param postId
- * @return
+ * Custom hook: Given the post ID, returns the full post object.
+ * @param {number|null} postId
+ * @return {Object} An object containing the post object and a loading state.
  */
 export default function usePost( postId: number | null ) {
 	const [ isLoading, setIsLoading ] = useState( false );

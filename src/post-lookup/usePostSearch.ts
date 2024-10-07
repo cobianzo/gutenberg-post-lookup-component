@@ -15,8 +15,8 @@ interface PostSearchResult {
  * Given the search term string, returns the list of matching posts.
  * It uses the apiFetch API of WP to retrieve the result
  *
- * @param searchTerm
- * @return
+ * @param {string | null} searchTerm - The search term to search for posts.
+ * @return {PostSearchResult} The list of matching posts.
  */
 function usePostSearch( searchTerm: string | null ): PostSearchResult {
 	const [ posts, setPosts ] = useState< WPPost[] >( [] );

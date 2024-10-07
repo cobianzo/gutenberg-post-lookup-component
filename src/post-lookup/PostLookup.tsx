@@ -1,22 +1,21 @@
 // WordPress dependencies
-import { useState, useCallback, useRef } from '@wordpress/element';
+import { useState, useCallback, useRef, useEffect } from '@wordpress/element';
 import { TextControl, Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
-// external deps and styles
-import './post-lookup-styles.css';
 
 // Internal deps
 import useDebounce from './useDebounce';
 import usePostSearch from './usePostSearch';
 import usePost from './usePost';
 
+// Interal styles css as js const
+import postLookupStyles from './post-lookup-styles';
+
 // Internal component deps
 import XButton from './XButton';
 
 //Types
 import type { WPPost } from './types';
-
 interface PostLookupProps {
 	selectedPostId: number | null;
 	updateSelectedPostId: ( postId: number | null ) => void;
@@ -43,6 +42,16 @@ const PostLookup: React.FC< PostLookupProps > = ( props ) => {
 	// ref of the control so we can assign focus
 	const textControlRef = useRef< HTMLInputElement >( null );
 
+	// INIT, load css from js const
+	useEffect( () => {
+		const style = document.createElement( 'style' );
+		style.textContent = postLookupStyles;
+		document.head.appendChild( style );
+		return () => {
+			document.head.removeChild( style );
+		};
+	} );
+
 	// HANDLERS ============= ============= =============
 	const handleInputChange = useCallback( ( value: string ) => {
 		setSearchTerm( value );
@@ -56,14 +65,11 @@ const PostLookup: React.FC< PostLookupProps > = ( props ) => {
 	// JSX ============= ============= =============
 	return (
 		<div className="coco__post-lookup">
-
 			{ /*
 						1 ) There is no selected post:
 				*/ }
 
-			<div className="post-lookup__preview">
-				{ ! selectedPostId ? <p>No post selected</p> : <p>&nbsp;</p> }
-			</div>
+			<div className="post-lookup__preview">{ ! selectedPostId ? <p>No post selected</p> : <p>&nbsp;</p> }</div>
 
 			{ /*
 						3 ) Show the selected post
@@ -78,17 +84,18 @@ const PostLookup: React.FC< PostLookupProps > = ( props ) => {
 							onClick={ () => {
 								setSearchTerm( '' );
 								setTimeout( () => textControlRef.current?.focus(), 500 );
-							} }>
+							} }
+						>
 							<span className="dashicons dashicons-edit"></span>
 							{ selectedPostObject.title.rendered }
 						</button>
-						{ selectedPostId > 0 ? <XButton onClick={ () => props.updateSelectedPostId( 0 ) } /> : 'No' }
+						{ selectedPostId && selectedPostId > 0 ? (
+							<XButton onClick={ () => props.updateSelectedPostId( 0 ) } />
+						) : '' }
 					</div>
 				</div>
-
 			) : (
 				<>
-
 					{ /*
 							2 ) Show the input to change selected post
 						*/ }
@@ -100,7 +107,9 @@ const PostLookup: React.FC< PostLookupProps > = ( props ) => {
 						placeholder={ __( 'Search…', 'coco' ) }
 						ref={ textControlRef }
 					/>
-					<XButton onClick={ () => setSearchTerm( null ) } />
+					{ selectedPostId && selectedPostId > 0 ? (
+						<XButton onClick={ () => setSearchTerm( null ) } />
+					) : null }
 
 					{ loading && <Spinner /> }
 					{ error && (
@@ -112,10 +121,7 @@ const PostLookup: React.FC< PostLookupProps > = ( props ) => {
 						<ul>
 							{ postResults.map( ( post: WPPost ) => (
 								<li key={ post.id }>
-									<button
-										className="button--unstyled"
-										onClick={ () => handleSelectPost( post.id ) }
-									>
+									<button className="button--unstyled" onClick={ () => handleSelectPost( post.id ) }>
 										{ post.title.rendered }
 									</button>
 								</li>
@@ -123,9 +129,7 @@ const PostLookup: React.FC< PostLookupProps > = ( props ) => {
 						</ul>
 					) }
 
-					{ selectedPostId ? (
-						<p> { __( 'Selected post ID:', 'coco' ) + selectedPostId } </p>
-					) : null }
+					{ selectedPostId ? <p> { __( 'Selected post ID:', 'coco' ) + selectedPostId } </p> : null }
 				</>
 			) }
 		</div>

@@ -18,7 +18,7 @@
 	},
 	"textdomain": "coco",
 	"editorScript": "file:../../build/test-block.js",
-	"editorStyle": "file:../../build/test-block.css",
-	"style": "file:../../build/test-block.css",
+	"editorStyle": "file:../../build/style-test-block.css",
+	"style": "file:../../build/style-test-block.css",
 	"render": "file:./render.php"
 }

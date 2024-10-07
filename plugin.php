@@ -9,12 +9,12 @@
  * Text Domain: coco
  * License: MIT
  * License URI: https://opensource.org/licenses/MIT
+ *
+ * @package post-lookup-component
  */
 
-
-
 // Register the test block using block.json
-// It will help us to test our component.
+// It will help us to test our component, inserting it with <PostLookup />.
 add_action( 'init', function () {
 	register_block_type( __DIR__ . '/src/test-block/block.json' );
 } );

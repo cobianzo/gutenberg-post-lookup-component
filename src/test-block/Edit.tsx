@@ -12,6 +12,9 @@ import type { PostIdAttribute } from './types/types.d';
 import PostLookup from '../post-lookup/PostLookup'; // Component
 import usePost from '../post-lookup/usePost'; // custom hook. Very handy.
 
+// styles
+import './style.css';
+
 /**
  * Edit function for the test block.
  *
@@ -28,11 +31,6 @@ function Edit( props: BlockEditProps< PostIdAttribute > ): JSX.Element | null {
 		<>
 			<div
 				{ ...useBlockProps() }
-				style={ {
-					border: '10px solid orange',
-					background: 'lightgray',
-					padding: '1rem',
-				} }
 			>
 				{ post ? (
 					<>

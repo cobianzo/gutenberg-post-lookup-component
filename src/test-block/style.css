@@ -1,3 +1,10 @@
-body {
-	border: 10px solid orange;
+.wp-block-coco-test-block {
+	border: 1px solid #2364a9;
+	background: #ccc;
+	padding: 1rem;
+	border-radius: 10px;
+
+	h2 {
+		margin: 0 auto 1rem;
+	}
 }

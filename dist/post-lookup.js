@@ -89,8 +89,8 @@ var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_w
  * Given the search term string, returns the list of matching posts.
  * It uses the apiFetch API of WP to retrieve the result
  *
- * @param searchTerm
- * @return
+ * @param {string | null} searchTerm - The search term to search for posts.
+ * @return {PostSearchResult} The list of matching posts.
  */
 function usePostSearch(searchTerm) {
   var _a = (0,external_wp_element_namespaceObject.useState)([]),
@@ -133,9 +133,9 @@ const external_wp_data_namespaceObject = window["wp"]["data"];
 
 
 /**
- * Given the post ID, returns the full post object.
- * @param postId
- * @return
+ * Custom hook: Given the post ID, returns the full post object.
+ * @param {number|null} postId
+ * @return {Object} An object containing the post object and a loading state.
  */
 function usePost(postId) {
   var _a = (0,external_wp_element_namespaceObject.useState)(false),
@@ -154,6 +154,9 @@ function usePost(postId) {
     isLoading: isLoading
   };
 }
+;// ./src/post-lookup/post-lookup-styles.ts
+var postLookupStyles = "\n  .coco__post-lookup {\n    position: relative;\n\n    input.components-text-control__input {\n      padding-right: 40px;\n    }\n\n    .x-button {\n      position: absolute;\n      top: 60px;\n      right: 10px;\n    }\n\n    .post-lookup__inner-row {\n      position: relative;\n    }\n    .post-lookup__inner-row .x-button {\n      top: 10px;\n    }\n\n    ul {\n      background: #fffffff4;\n      padding: 0 0.5rem;\n      border: 1px solid #ccc;\n      box-shadow: 1px 7px 9px -9px #000000;\n      position: absolute;\n      width: 100%;\n      top: 74px;\n    }\n\n    li {\n      padding: 0;\n      border-bottom: 1px solid #cccccc;\n      margin: 0;\n    }\n\n    li button {\n      width: 100%;\n    }\n\n    button.button--unstyled {\n      display: flex;\n      gap: 1rem;\n      padding: 0.5rem;\n      align-items: center;\n      cursor: pointer;\n      background: transparent;\n      border: 0;\n      color: var( --wp-components-color-accent, var( --wp-admin-theme-color, #3858e9 ) );\n    }\n\n    button.button--unstyled:hover {\n      background-color: rgba( var( --wp-admin-theme-color--rgb ), 0.04 );\n    }\n  }\n";
+/* harmony default export */ const post_lookup_styles = (postLookupStyles);
 ;// ./src/post-lookup/XButton.tsx
 
 // ts-eslint-disable
@@ -183,11 +186,11 @@ function XButton(props) {
 
 
 
-// external deps and styles
-
 // Internal deps
 
 
+
+// Interal styles css as js const
 
 // Internal component deps
 
@@ -216,6 +219,15 @@ var PostLookup = function (props) {
   var selectedPostObject = usePost(selectedPostId).post;
   // ref of the control so we can assign focus
   var textControlRef = (0,external_wp_element_namespaceObject.useRef)(null);
+  // INIT, load css from js const
+  (0,external_wp_element_namespaceObject.useEffect)(function () {
+    var style = document.createElement('style');
+    style.textContent = post_lookup_styles;
+    document.head.appendChild(style);
+    return function () {
+      document.head.removeChild(style);
+    };
+  });
   // HANDLERS ============= ============= =============
   var handleInputChange = (0,external_wp_element_namespaceObject.useCallback)(function (value) {
     setSearchTerm(value);
@@ -252,11 +264,11 @@ var PostLookup = function (props) {
           children: [(0,external_ReactJSXRuntime_namespaceObject.jsx)("span", {
             className: "dashicons dashicons-edit"
           }), selectedPostObject.title.rendered]
-        }), selectedPostId > 0 ? (0,external_ReactJSXRuntime_namespaceObject.jsx)(XButton, {
+        }), selectedPostId && selectedPostId > 0 ? (0,external_ReactJSXRuntime_namespaceObject.jsx)(XButton, {
           onClick: function () {
             return props.updateSelectedPostId(0);
           }
-        }) : 'No']
+        }) : '']
       })]
     }) : (0,external_ReactJSXRuntime_namespaceObject.jsxs)(external_ReactJSXRuntime_namespaceObject.Fragment, {
       children: [(0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.TextControl, {
@@ -265,11 +277,11 @@ var PostLookup = function (props) {
         onChange: handleInputChange,
         placeholder: (0,external_wp_i18n_namespaceObject.__)('Search…', 'coco'),
         ref: textControlRef
-      }), (0,external_ReactJSXRuntime_namespaceObject.jsx)(XButton, {
+      }), selectedPostId && selectedPostId > 0 ? (0,external_ReactJSXRuntime_namespaceObject.jsx)(XButton, {
         onClick: function () {
           return setSearchTerm(null);
         }
-      }), loading && (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.Spinner, {}), error && (0,external_ReactJSXRuntime_namespaceObject.jsx)("div", {
+      }) : null, loading && (0,external_ReactJSXRuntime_namespaceObject.jsx)(external_wp_components_namespaceObject.Spinner, {}), error && (0,external_ReactJSXRuntime_namespaceObject.jsx)("div", {
         className: "notice notice-error",
         children: (0,external_ReactJSXRuntime_namespaceObject.jsx)("p", {
           children: (0,external_wp_i18n_namespaceObject.__)('Error:', 'coco') + error
