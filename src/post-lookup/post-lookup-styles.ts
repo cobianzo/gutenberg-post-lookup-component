@@ -2,6 +2,10 @@
  * CSS in JS
  */
 const postLookupStyles = `
+  .interface-complementary-area .components-panel {
+    z-index: 9;
+  }
+
   .coco__post-lookup {
     position: relative;
 

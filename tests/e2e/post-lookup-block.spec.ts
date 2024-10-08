@@ -44,8 +44,13 @@ test.describe( 'TEST E2E <PostLookup>', () => {
 		await page.keyboard.press( 'Enter' );
 		await page.keyboard.type( '/coco' );
 		await expect( page.locator( '.components-popover__content' ) ).toBeVisible();
+		await page.keyboard.press( 'Enter' );
 
-		// expect( await editor.getEditedPostContent() ).toMatchSnapshot();
+		// Save changes
+
+		// Edit the block inserting the search of one post in the list (look for 'Hello')
+
+		// Select the first result in the list.
 
 		// Save changes
 		await page.click( 'button.editor-post-publish-button' );
@@ -55,14 +60,4 @@ test.describe( 'TEST E2E <PostLookup>', () => {
 		await page.goto( pageUrl );
 		await expect( page.locator( 'h1.wp-block-post-title' ) ).toHaveText( pageTitle );
 	} );
-
-	// Create 5 random posts
-
-	// Insert the test block
-
-	// Edit the block inserting the search of one of the 5 posts
-
-	// Select one of the resuls and confirm it shows the post and set up the value
-
-	// Remove the block.
 } );

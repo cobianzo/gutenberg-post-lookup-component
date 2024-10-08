@@ -11,6 +11,10 @@
 		"html": false
 	},
 	"attributes": {
+		"postType": {
+			"type": "string",
+			"default": "post"
+		},
 		"postID": {
 			"type": "number",
 			"default": 0

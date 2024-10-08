@@ -3,12 +3,12 @@
 -   This repository creates the component `<PostLookup>`.
     -   It replaces the built in `<ComboboxControl>`, which loads all posts on page load.
     -   it allows to type up a post name, and select a post from the list.
--   The repo includes a test block in order to test it.
+-   The repo includes a test block in order to test it. See `plugin.php`, which is the start of the plugin containing this block, and it has functions to create dummy data.
 -   Uses typescript and `playwright` testing, developed in `wp-env` with `wp-scripts` package.
 
 # TO DOs
 
-- The component should admit other query params. At least, the postType.
+- The component should admit other query params on top of the postType.
 - Install and setup `phpstan` for PHP better linting.
 - Setup ad repo with continous integration, executing tests using webhooks in git.
 - Finish the e2e testing.
@@ -81,7 +81,7 @@ As this is my first `npm` package, I include some helping instructions as a refe
 -   Start env and development. `npm run up` or `npx wp-env start`. I have installed `@wordpress/env` globally so it has been added to my PATH, so I can run it with `wp-env start`.
 If I want to use other ports I can do: `WP_ENV_PORT=3333 WP_ENV_TESTS_PORT=3334 wp-env start`.
 
-Bu default, You should get something liks this.
+By default, You should get something liks this.
 
 ```
 WordPress development site started at http://localhost:8888/
@@ -114,7 +114,8 @@ In VSCode, sometimes you'll need to add the setting in your workspace:
 After some development, the block was working ok, and it was using the
 component properly.
 
-@TODO:the component should accept `postType`.
+@TODO:the component accepts `postType`, but it should be better used in the API call, because in the endpoint 'wp/post' is converted manually to 'wp/posts'
+It should accept other filters.
 
 # Setting up playwright.
 

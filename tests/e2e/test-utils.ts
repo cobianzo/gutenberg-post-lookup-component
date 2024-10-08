@@ -26,6 +26,6 @@ export async function createAndPublishPost(
 		const href = document.querySelector( '.post-publish-panel__postpublish-buttons a' )?.getAttribute( 'href' );
 		return href ?? '';
 	} );
-	console.log( 'retrieved url for ne post: ', postUrl, title );
+	console.log( 'retrieved url for the ' + postType + ': ', postUrl, title );
 	return postUrl;
 }

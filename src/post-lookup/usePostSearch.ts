@@ -14,12 +14,13 @@ interface PostSearchResult {
 /**
  * Given the search term string, returns the list of matching posts.
  * It uses the apiFetch API of WP to retrieve the result
- * - @TODO: accept query params from the componennt, not only the string.
+ * - @TODO: accept query params from the componennt, not only the postType.
  *
  * @param {string | null} searchTerm - The search term to search for posts.
+ * @param                 postType
  * @return {PostSearchResult} The list of matching posts.
  */
-function usePostSearch( searchTerm: string | null ): PostSearchResult {
+function usePostSearch( searchTerm: string | null, postType: string = 'post' ): PostSearchResult {
 	const [ posts, setPosts ] = useState< WPPost[] >( [] );
 	const [ loading, setLoading ] = useState< boolean >( false );
 	const [ error, setError ] = useState< string | null >( null );
@@ -33,18 +34,23 @@ function usePostSearch( searchTerm: string | null ): PostSearchResult {
 		setLoading( true );
 		setError( null );
 
+		let endpoint = `/wp/v2/${ postType === 'post' ? 'posts' : postType }`;
+		endpoint += `?search=${ encodeURIComponent( searchTerm ) }`;
+		endpoint += `&per_page=10`;
 		apiFetch< WPPost[] >( {
-			path: `/wp/v2/posts?search=${ encodeURIComponent( searchTerm ) }&per_page=10`,
+			path: endpoint,
 		} )
 			.then( ( results ) => {
 				setPosts( results );
 				setLoading( false );
 			} )
 			.catch( ( err ) => {
+				// eslint-disable-next-line no-console
+				console.error( 'Error in fetchAPI for endpoint:', endpoint, err );
 				setError( 'Failed to fetch posts' + err.message );
 				setLoading( false );
 			} );
-	}, [ searchTerm ] );
+	}, [ searchTerm, postType ] );
 
 	return { posts, loading, error };
 }

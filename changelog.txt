@@ -1,0 +1,2 @@
+# 1.1.4
+Accepts postType, so we use the component with other than 'posts'

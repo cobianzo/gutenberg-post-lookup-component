@@ -1,15 +1,15 @@
 import { BlockConfiguration } from '@wordpress/blocks';
 
 // block-types.ts
-export interface PostIdAttribute {
-	postID: number;
-}
-
 export interface BlockAttributes {
 	postID: {
 		type: 'number';
 		default: number;
-	};
+	},
+	postType: {
+		type: 'string';
+		default: 'post';
+	},
 }
 
 // Extender BlockConfiguration con nuestros atributos personalizados

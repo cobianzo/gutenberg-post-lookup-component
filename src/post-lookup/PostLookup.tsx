@@ -18,6 +18,7 @@ import XButton from './XButton';
 import type { WPPost } from './types';
 interface PostLookupProps {
 	selectedPostId: number | null;
+	postType?: string;
 	updateSelectedPostId: ( postId: number | null ) => void;
 }
 
@@ -32,25 +33,28 @@ interface PostLookupProps {
  * =====================================================
  */
 const PostLookup: React.FC< PostLookupProps > = ( props ) => {
-	const { selectedPostId, updateSelectedPostId } = props;
+	const { selectedPostId, postType = 'post', updateSelectedPostId } = props;
 
 	// STATES ============= ============= =============
 	const [ searchTerm, setSearchTerm ] = useState< string | null >( null );
 	const debouncedSearchTerm = useDebounce( searchTerm, 300 );
-	const { posts: postResults, loading, error } = usePostSearch( debouncedSearchTerm );
-	const { post: selectedPostObject }: { post: WPPost | null } = usePost( selectedPostId );
+	const { posts: postResults, loading, error } = usePostSearch( debouncedSearchTerm, postType );
+	const { post: selectedPostObject }: { post: WPPost | null } = usePost( selectedPostId, postType );
 	// ref of the control so we can assign focus
 	const textControlRef = useRef< HTMLInputElement >( null );
 
 	// INIT, load css from js const
 	useEffect( () => {
+		// eslint-disable-next-line no-console
+		console.log( ' > PostLookup init in  ' + process.env.NODE_ENV + ' Mode' );
+
 		const style = document.createElement( 'style' );
 		style.textContent = postLookupStyles;
 		document.head.appendChild( style );
 		return () => {
 			document.head.removeChild( style );
 		};
-	} );
+	}, [] );
 
 	// HANDLERS ============= ============= =============
 	const handleInputChange = useCallback( ( value: string ) => {
@@ -101,7 +105,7 @@ const PostLookup: React.FC< PostLookupProps > = ( props ) => {
 						*/ }
 
 					<TextControl
-						label={ __( 'Search for a post', 'coco' ) }
+						label={ __( 'Search for a post', 'coco' ) + ` (${ postType })` }
 						value={ searchTerm || '' }
 						onChange={ handleInputChange }
 						placeholder={ __( 'Search…', 'coco' ) }

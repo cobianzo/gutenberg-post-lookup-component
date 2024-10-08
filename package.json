@@ -1,6 +1,6 @@
 {
 	"name": "@cobianzo/gutenberg-post-lookup-component",
-	"version": "1.1.3",
+	"version": "1.1.4",
 	"main": "dist/post-lookup.js",
 	"style": "dist/post-lookup.css",
 	"files": [
@@ -8,7 +8,8 @@
 	],
 	"private": false,
 	"scripts": {
-		"up": "WP_ENV_PORT=3333 WP_ENV_TESTS_PORT=3334 wp-env start",
+		"wp-env": "wp-env",
+		"up": "WP_ENV_PORT=8888 WP_ENV_TESTS_PORT=8889 wp-env start",
 		"down": "wp-env stop",
 		"destroy": "wp-env destroy",
 		"build": "wp-scripts build",

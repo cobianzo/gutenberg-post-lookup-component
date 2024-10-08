@@ -7,6 +7,8 @@ module.exports = {
 	plugins: [ '@typescript-eslint' ],
 	rules: {
 		'max-len': [ 'error', { code: 120 } ], // Permitir hasta 120 caracteres
+		'jsdoc/require-jsdoc': 'off', // Desactiva la regla de JSDoc
+		'jsdoc/require-param-type': 'off',
 	},
 	overrides: [
 		{
