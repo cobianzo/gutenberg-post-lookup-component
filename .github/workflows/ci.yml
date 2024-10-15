@@ -25,13 +25,13 @@ jobs:
 
     - name: Install dependencies
       run: |
-        npm install
+        npm ci
         composer install
 
     - name: Set up wp-env
       run: |
-        npm run wp-env start
-        npm run wp-env run cli wp core version
+        npm run up
+        npx wp-env run cli wp core version
 
     - name: Run JavaScript and CSS linting
       run: npm run lint
@@ -44,4 +44,4 @@ jobs:
 
     - name: Stop wp-env
       if: always()
-      run: npm run wp-env stop
+      run: npm run down
