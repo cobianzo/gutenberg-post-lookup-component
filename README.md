@@ -91,10 +91,10 @@ As this is my first `npm` package, I include some helping instructions as a refe
 
 ## Start working: checking lintings
 
--   Start env and development. `npm run up` or `npx wp-env start`. I have installed `@wordpress/env` globally so it has been added to my PATH, so I can run it with `wp-env start`.
+-   Start env and development. `npm run up` or `npx wp-env start`. I also have installed `@wordpress/env` globally so it has been added to my PATH, so I can run it with `wp-env start`.
 If I want to use other ports I can do: `WP_ENV_PORT=3333 WP_ENV_TESTS_PORT=3334 wp-env start`.
 
-By default, You should get something liks this.
+By default, You should get something like this.
 
 ```
 WordPress development site started at http://localhost:8888/
