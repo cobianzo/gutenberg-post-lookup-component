@@ -6,12 +6,12 @@
 -   The repo includes a test block in order to test it. See `plugin.php`, which is the start of the plugin containing this block, and it has functions to create dummy data.
 -   Uses typescript and `playwright` testing, developed in `wp-env` with `wp-scripts` package.
 
-# TO DOs
+# TO DOs (or @TODOs)
 
 - The component should admit other query params on top of the postType.
-- Install and setup `phpstan` for PHP better linting.
 - Setup ad repo with continous integration, executing tests using webhooks in git.
 - Finish the e2e testing.
+- Accept arrows up and down to select one of the options of the dropdown.
 
 References from other repos:
 
@@ -152,3 +152,11 @@ At this point, gutenberg-post-selector-component is now globally available, and 
 We publish with `npm publish` at
 
 https://www.npmjs.com/package/@cobianzo/gutenberg-post-lookup-component
+
+# I added phpstan at the end.
+
+We included the packages `szepeviktor/phpstan-wordpress phpstan/extension-installer`
+
+No further configuration is needed, phpstan/extension-installer handles discovery automatically.
+
+# Continous integration

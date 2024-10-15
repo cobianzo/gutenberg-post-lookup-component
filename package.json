@@ -15,13 +15,8 @@
 		"build": "wp-scripts build",
 		"start": "wp-scripts start",
 		"test:e2e": "playwright test",
-		"test:unit": "wp-scripts test-unit-js",
 		"lint:js": "wp-scripts lint-js './src/**/*.{js,jsx,ts,tsx}'",
 		"lint:css": "wp-scripts lint-style './src/**/*.{css,scss}'",
-		"lint:php": "wp-scripts lint-php .",
-		"lint:phpcs": "phpcs",
-		"lint:php:fix": "phpcbf",
-		"lint:php:stan": "phpstan analyse",
 		"lint": "npm run lint:js && npm run lint:css"
 	},
 	"keywords": ["gutenberg", "search post", "component"],

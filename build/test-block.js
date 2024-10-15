@@ -130,6 +130,7 @@ const PostLookup = props => {
         value: searchTerm || '',
         onChange: handleInputChange,
         placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Search…', 'coco'),
+        autoComplete: "off",
         ref: textControlRef
       }), selectedPostId && selectedPostId > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_XButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
         onClick: () => setSearchTerm(null)

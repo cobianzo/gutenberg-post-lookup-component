@@ -109,6 +109,7 @@ const PostLookup: React.FC< PostLookupProps > = ( props ) => {
 						value={ searchTerm || '' }
 						onChange={ handleInputChange }
 						placeholder={ __( 'Search…', 'coco' ) }
+						autoComplete="off"
 						ref={ textControlRef }
 					/>
 					{ selectedPostId && selectedPostId > 0 ? (

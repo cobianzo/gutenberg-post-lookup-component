@@ -35,12 +35,12 @@ add_action( 'init', function () {
  */
 class Test_Data {
 
-	public static function init() {
+	public static function init(): void {
 		add_action( 'init', [ __CLASS__, 'create_car_post_type' ] );
 	}
 
 	// This function generates a random post title.
-	public static function generate_random_title() {
+	public static function generate_random_title(): string {
 		$adjectives = [ 'Amazing', 'Awesome', 'Interesting', 'Random', 'Exciting' ];
 		$nouns      = [ 'Post', 'Story', 'Article', 'Topic', 'Entry' ];
 		return $adjectives[ array_rand( $adjectives ) ] . ' ' . $nouns[ array_rand( $nouns ) ];
@@ -53,7 +53,7 @@ class Test_Data {
 	 *
 	 * @param int $num_posts The number of posts to create.
 	 */
-	public static function create_random_posts( $num_posts = 5, $post_type = 'post' ) {
+	public static function create_random_posts( int $num_posts = 5, string $post_type = 'post' ): void {
 		for ( $i = 0; $i < $num_posts; $i++ ) {
 				// Prepare post data.
 				$post_data = array(
@@ -69,7 +69,7 @@ class Test_Data {
 		}
 	}
 
-	public static function cleanup() {
+	public static function cleanup(): void {
 
 		// Get all posts of the specified post type.
 		$posts = get_posts(
@@ -89,7 +89,7 @@ class Test_Data {
 	/**
 	 * Register a custom post type called "car"
 	 */
-	public static function create_car_post_type() {
+	public static function create_car_post_type(): void {
 		register_post_type( 'car',
 			array(
 				'labels'       => array(
@@ -114,6 +114,5 @@ register_activation_hook( __FILE__, function () {
 	Test_Data::create_random_posts( 5, 'car' );
 } );
 
-add_action( 'init', function () {
-	// Test_Data::cleanup(); // delete all 'posts' and 'car' post type
-} );
+// For debugging. If during our tests we want to cleanup the dummy data
+// add_action( 'init', ['Test_Data', 'cleanup'] );

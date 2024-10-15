@@ -1,4 +1,4 @@
-# These are my notes to save the promtps that I will share with an AI agent
+# These are my notes to save the promtps that I can share with an AI agent
 
 I want to create a new component for Gutenberg that I can include inside the <InspectorControls> component.
 The component will be called <PostLookup />

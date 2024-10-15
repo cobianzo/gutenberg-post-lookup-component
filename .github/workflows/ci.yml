@@ -1,0 +1,47 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
+
+    - name: Install dependencies
+      run: |
+        npm install
+        composer install
+
+    - name: Set up wp-env
+      run: |
+        npm run wp-env start
+        npm run wp-env run cli wp core version
+
+    - name: Run JavaScript and CSS linting
+      run: npm run lint
+
+    - name: Run PHP linting
+      run: composer lint
+
+    - name: Run E2E tests
+      run: npm run test:e2e
+
+    - name: Stop wp-env
+      if: always()
+      run: npm run wp-env stop
