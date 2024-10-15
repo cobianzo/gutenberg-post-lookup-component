@@ -21,24 +21,29 @@
  * the plugin side is used exclusively to test the component.
  */
 
+namespace Coco\Test_Plugin;
+
 // Register the test block using block.json
 // It will help us to test our component, inserting it with <PostLookup />.
 add_action( 'init', function () {
 	register_block_type( __DIR__ . '/src/test-block/block.json' );
 } );
 
-
-// This function generates a random post title.
-function generate_random_title() {
-	$adjectives = [ 'Amazing', 'Awesome', 'Interesting', 'Random', 'Exciting' ];
-	$nouns      = [ 'Post', 'Story', 'Article', 'Topic', 'Entry' ];
-	return $adjectives[ array_rand( $adjectives ) ] . ' ' . $nouns[ array_rand( $nouns ) ];
-}
-
+/**
+ * This class helps us to test the lookup component,
+ * by rceating dummy posts and dummy cars (CPT).
+ */
 class Test_Data {
 
 	public static function init() {
 		add_action( 'init', [ __CLASS__, 'create_car_post_type' ] );
+	}
+
+	// This function generates a random post title.
+	public static function generate_random_title() {
+		$adjectives = [ 'Amazing', 'Awesome', 'Interesting', 'Random', 'Exciting' ];
+		$nouns      = [ 'Post', 'Story', 'Article', 'Topic', 'Entry' ];
+		return $adjectives[ array_rand( $adjectives ) ] . ' ' . $nouns[ array_rand( $nouns ) ];
 	}
 
 	/**
@@ -52,7 +57,7 @@ class Test_Data {
 		for ( $i = 0; $i < $num_posts; $i++ ) {
 				// Prepare post data.
 				$post_data = array(
-					'post_title'   => generate_random_title() . ' ' . $post_type,  // Random title
+					'post_title'   => self::generate_random_title() . ' ' . $post_type,  // Random title
 					'post_content' => 'This is the content of the random post.',  // Sample content
 					'post_status'  => 'publish',  // Publish the post
 					'post_author'  => 1,  // Set the author to the user with ID 1 (you can change it)
@@ -110,5 +115,5 @@ register_activation_hook( __FILE__, function () {
 } );
 
 add_action( 'init', function () {
-	// Test_Data::cleanup(); // delete all posts and 'car' post type
+	// Test_Data::cleanup(); // delete all 'posts' and 'car' post type
 } );

@@ -10,6 +10,7 @@
 	"phpcs.showSources": true,
 	"phpcbf.documentFormattingProvider": true,
 	"phpcbf.onsave": false,
+	"files.trimTrailingWhitespace": true,
 	"phpcbf.executablePath": "./vendor/bin/phpcbf",
 	"phpcbf.standard": "./.phpcs.xml.dist",
 	"eslint.run": "onType",
@@ -21,7 +22,7 @@
 		}
 	},
 	"[php]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "persoderlind.vscode-phpcbf"
 	},
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "explicit"

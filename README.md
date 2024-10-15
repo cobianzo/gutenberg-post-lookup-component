@@ -18,7 +18,20 @@ References from other repos:
 -   https://github.com/wp-blocks/typescript-wp-block/tree/master
 -   https://github.com/WordPress/gutenberg/
 
-# Usage
+# Developer guide basic notes
+
+If you are a developer, download or clone this repo. You'll need to have `wp-env` installed globally
+- VSCode extensions: ESLint, phpcs and phpcbf, Playwright.
+- Install the stuff: `npm install`, `composer`
+- Start server: `npm run up`
+- Start build watch with wp-scripts: `npm run start`
+- Test the stuff: `npm run test:e2e`
+- Linting your stuff with `npm run lint:js`, `npm run lint:js -- --fix`, `composer lint`, `composer format`
+- Test manually: open the WP, create a new post or page, insert the block with frefix `coco`. you can use a CPT, create random data by loading the functions of `plugin.php`
+
+# Usage of the npm package
+
+If you are a consumer pf the npm package:
 
 `npm install @cobianzo/gutenberg-post-lookup-component`
 
