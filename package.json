@@ -19,7 +19,11 @@
 		"lint:css": "wp-scripts lint-style './src/**/*.{css,scss}'",
 		"lint": "npm run lint:js && npm run lint:css"
 	},
-	"keywords": ["gutenberg", "search post", "component"],
+	"keywords": [
+		"gutenberg",
+		"search post",
+		"component"
+	],
 	"author": "@cobianzo",
 	"license": "ISC",
 	"description": "Code for an npm package that allows searching for posts in the Gutenberg editor",

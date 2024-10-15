@@ -11,7 +11,7 @@
 		"phpstan": "./vendor/bin/phpstan analyse --memory-limit=2048M",
 		"phpcs": "./vendor/bin/phpcs --standard=.phpcs.xml.dist",
 		"format": "./vendor/bin/phpcbf --standard=.phpcs.xml.dist --report-summary --report-source",
-		"lint": " composer phpcs; echo \">>>>>>>>>>phpcs finished ===== \"; composer phpstan",
+		"lint": " composer phpcs; echo \">>>>>>>>>>phpcs finished ===== \"; composer phpstan"
 	},
 	"config": {
 		"allow-plugins": {
