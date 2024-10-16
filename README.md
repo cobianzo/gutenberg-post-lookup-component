@@ -103,6 +103,8 @@ MySQL is listening on port 52332
 MySQL for automated testing is listening on port 52334
 ```
 
+(login with admin/password)
+
 Use `docker ps` to confirm the 4 containers are running.
 
 -   Check lintings:
@@ -160,3 +162,7 @@ We included the packages `szepeviktor/phpstan-wordpress phpstan/extension-instal
 No further configuration is needed, phpstan/extension-installer handles discovery automatically.
 
 # Continous integration
+
+Setup of .github/wokflows/ci.yml 
+
+@TODO: add cache to avoid installing node and all the dependencies every time. Use artifacts to help the review of the logs, and add a summary after the pipe flow.
