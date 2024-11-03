@@ -64,14 +64,11 @@ const PostLookup: React.FC< PostLookupProps > = ( props ) => {
 	// JSX ============= ============= =============
 	return (
 		<div className="coco__post-lookup">
-			{ /*
-						1 ) There is no selected post:
-				*/ }
 
-			<div className="post-lookup__preview">{ ! selectedPostId ? <p>No post selected</p> : <p>&nbsp;</p> }</div>
-
+			<p>{ ( ! selectedPostId || ! selectedPostObject?.id || searchTerm !== null )
+				? __( 'No post selected', 'coco' ) : null } </p>
 			{ /*
-						3 ) Show the selected post
+						1 ) Show the selected post
 				*/ }
 
 			{ selectedPostId && selectedPostObject?.id && searchTerm === null ? (
@@ -104,7 +101,7 @@ const PostLookup: React.FC< PostLookupProps > = ( props ) => {
 						value={ searchTerm || '' }
 						onChange={ handleInputChange }
 						placeholder={ __( 'Search…', 'coco' ) }
-						autoComplete="off"
+						autoComplete={ 'off' }
 						ref={ textControlRef }
 					/>
 					{ selectedPostId && selectedPostId > 0 ? (
