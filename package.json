@@ -1,10 +1,13 @@
 {
 	"name": "@cobianzo/gutenberg-post-lookup-component",
-	"version": "2.0.0",
+	"version": "2.0.01",
 	"main": "dist/post-lookup.js",
 	"style": "dist/post-lookup.css",
 	"files": [
-		"dist"
+		"dist/post-lookup.css",
+		"dist/post-lookup.js",
+		"dist/post-lookup.js.map",
+		"README.md"
 	],
 	"private": false,
 	"scripts": {

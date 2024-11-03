@@ -8,6 +8,7 @@ const postLookupStyles = `
 
   .coco__post-lookup {
     position: relative;
+    text-align: left;
 
     input.components-text-control__input {
       padding-right: 40px;
