@@ -19,21 +19,16 @@ import type { WPPost } from './types';
 interface PostLookupProps {
 	selectedPostId: number | null;
 	postType?: string;
-	updateSelectedPostId: ( postId: number | null ) => void;
+	onChange: ( postId: number | null ) => void;
 }
 
 /**
- * The Component ========================
- * Usage: <PostLookup selectedPostId={<yourPostId}>} updateSelectedPostId={<your-fn>} />
- *
- * @param {PostLookupProps}                 props
- * @param {number | null}                   props.selectedPostId
- * @param {(postId: number | null) => void} props.updateSelectedPostId
- * @return {JSX.Element}
- * =====================================================
+ * The Component ======================================
+ * Usage: <PostLookup selectedPostId={<yourPostId}>} onChange={<your-fn>} />
+ * @param props
  */
 const PostLookup: React.FC< PostLookupProps > = ( props ) => {
-	const { selectedPostId, postType = 'post', updateSelectedPostId } = props;
+	const { selectedPostId, postType = 'post', onChange } = props;
 
 	// STATES ============= ============= =============
 	const [ searchTerm, setSearchTerm ] = useState< string | null >( null );
@@ -62,21 +57,18 @@ const PostLookup: React.FC< PostLookupProps > = ( props ) => {
 	}, [] );
 
 	const handleSelectPost = ( postId: number ) => {
-		updateSelectedPostId( postId );
+		onChange( postId );
 		setSearchTerm( null );
 	};
 
 	// JSX ============= ============= =============
 	return (
 		<div className="coco__post-lookup">
-			{ /*
-						1 ) There is no selected post:
-				*/ }
 
-			<div className="post-lookup__preview">{ ! selectedPostId ? <p>No post selected</p> : <p>&nbsp;</p> }</div>
-
+			<p>{ ( ! selectedPostId || ! selectedPostObject?.id || searchTerm !== null )
+				? __( 'No post selected', 'coco' ) : null } </p>
 			{ /*
-						3 ) Show the selected post
+						1 ) Show the selected post
 				*/ }
 
 			{ selectedPostId && selectedPostObject?.id && searchTerm === null ? (
@@ -94,7 +86,7 @@ const PostLookup: React.FC< PostLookupProps > = ( props ) => {
 							{ selectedPostObject.title.rendered }
 						</button>
 						{ selectedPostId && selectedPostId > 0 ? (
-							<XButton onClick={ () => props.updateSelectedPostId( 0 ) } />
+							<XButton onClick={ () => props.onChange( 0 ) } />
 						) : '' }
 					</div>
 				</div>
@@ -109,7 +101,7 @@ const PostLookup: React.FC< PostLookupProps > = ( props ) => {
 						value={ searchTerm || '' }
 						onChange={ handleInputChange }
 						placeholder={ __( 'Search…', 'coco' ) }
-						autoComplete="off"
+						autoComplete={ 'off' }
 						ref={ textControlRef }
 					/>
 					{ selectedPostId && selectedPostId > 0 ? (

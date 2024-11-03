@@ -44,20 +44,15 @@ __webpack_require__.r(__webpack_exports__);
 //Types
 
 /**
- * The Component ========================
- * Usage: <PostLookup selectedPostId={<yourPostId}>} updateSelectedPostId={<your-fn>} />
- *
- * @param {PostLookupProps}                 props
- * @param {number | null}                   props.selectedPostId
- * @param {(postId: number | null) => void} props.updateSelectedPostId
- * @return {JSX.Element}
- * =====================================================
+ * The Component ======================================
+ * Usage: <PostLookup selectedPostId={<yourPostId}>} onChange={<your-fn>} />
+ * @param props
  */
 const PostLookup = props => {
   const {
     selectedPostId,
     postType = 'post',
-    updateSelectedPostId
+    onChange
   } = props;
 
   // STATES ============= ============= =============
@@ -91,20 +86,15 @@ const PostLookup = props => {
     setSearchTerm(value);
   }, []);
   const handleSelectPost = postId => {
-    updateSelectedPostId(postId);
+    onChange(postId);
     setSearchTerm(null);
   };
 
   // JSX ============= ============= =============
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
     className: "coco__post-lookup",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
-      className: "post-lookup__preview",
-      children: !selectedPostId ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
-        children: "No post selected"
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
-        children: "\xA0"
-      })
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("p", {
+      children: [!selectedPostId || !selectedPostObject?.id || searchTerm !== null ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('No post selected', 'coco') : null, " "]
     }), selectedPostId && selectedPostObject?.id && searchTerm === null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
       className: "post-lookup__preview",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
@@ -121,7 +111,7 @@ const PostLookup = props => {
             className: "dashicons dashicons-edit"
           }), selectedPostObject.title.rendered]
         }), selectedPostId && selectedPostId > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_XButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
-          onClick: () => props.updateSelectedPostId(0)
+          onClick: () => props.onChange(0)
         }) : '']
       })]
     }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
@@ -130,7 +120,7 @@ const PostLookup = props => {
         value: searchTerm || '',
         onChange: handleInputChange,
         placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Search…', 'coco'),
-        autoComplete: "off",
+        autoComplete: 'off',
         ref: textControlRef
       }), selectedPostId && selectedPostId > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_XButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
         onClick: () => setSearchTerm(null)
@@ -215,6 +205,7 @@ const postLookupStyles = `
 
   .coco__post-lookup {
     position: relative;
+    text-align: left;
 
     input.components-text-control__input {
       padding-right: 40px;
@@ -521,7 +512,7 @@ const Edit = props => {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_post_lookup_PostLookup__WEBPACK_IMPORTED_MODULE_3__["default"], {
             selectedPostId: postID,
             postType: postType,
-            updateSelectedPostId: newPostId => setAttributes({
+            onChange: newPostId => setAttributes({
               postID: newPostId || 0,
               postType: postType || 'post'
             })

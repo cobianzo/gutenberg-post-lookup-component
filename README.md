@@ -6,12 +6,22 @@
 -   The repo includes a test block in order to test it. See `plugin.php`, which is the start of the plugin containing this block, and it has functions to create dummy data.
 -   Uses typescript and `playwright` testing, developed in `wp-env` with `wp-scripts` package.
 
+git repo: https://github.com/cobianzo/gutenberg-post-lookup-component/tree/main
+
+npm package: https://www.npmjs.com/package/@cobianzo/gutenberg-post-lookup-component
+
 # TO DOs (or @TODOs)
 
-- The component should admit other query params on top of the postType.
-- Setup ad repo with continous integration, executing tests using webhooks in git.
-- Finish the e2e testing.
+- The component should admit other query params on top of the postType (post status, etc...).
+- CI/CD: run tests and linting only when relevant files change in the commit (not need only if README.md is updated).
+- Improve the repo with continous integration: currently it takes too long to run.
+- Finish the e2e testing, there are still things to check.
 - Accept arrows up and down to select one of the options of the dropdown.
+- Create a changelog.
+- Maybe use husky
+- TOFIX: The component works in the sidebar, but not inside the editor.
+- Add the prop 'label' for the component
+- Replace the CSS in JS for a regular CSS (and check that stylelint works ok in it)
 
 References from other repos:
 
@@ -47,7 +57,8 @@ Assuming that you have a block with an attribute called `favPost` (type number)
         <PanelBody>
             <PostLookup
                 selectedPostId={ props.attributes.favPost }
-                updateSelectedPostId={ ( newPostId ) =>
+                postType='post'
+                onChange={ ( newPostId ) =>
                     props.setAttributes( {
                         favPost: newPostId || 0,
                     } )
@@ -118,7 +129,7 @@ Use `docker ps` to confirm the 4 containers are running.
         -   `npm run lint:js src/index.ts`
         -   `npm run lint:js src/index.ts -- --fix`
     -   ✅ same with css files
-        -   `npm run lint:jcss src/index.ts`
+        -   `npm run lint:css`
 
 In VSCode, sometimes you'll need to add the setting in your workspace:
 

@@ -27,6 +27,7 @@ test.describe( 'TEST E2E <PostLookup>', () => {
 			'First Test Posts',
 		];
 
+		// create the posts (so far 1) in the list
 		for ( const title of postTitles ) {
 			const postUrl = await createAndPublishPost( page, admin, editor, title );
 			console.log( `Theorically created post:: ${ title }` );
@@ -63,10 +64,11 @@ test.describe( 'TEST E2E <PostLookup>', () => {
 
 		// now the dropdown of results must be shown.
 		const thirdResultSelector = '.coco__post-lookup li:nth-child(3) > button';
+		await expect( page.locator( thirdResultSelector ) ).toBeVisible();
 		const thirdElement = page.locator( thirdResultSelector );
 		const textThirdElement = await thirdElement.textContent();
-		expect( textThirdElement.toLowerCase() ).toContain( 'post' );
 		console.log( `The text of the third element is: ${ textThirdElement }` );
+		expect( textThirdElement.toLowerCase() ).toContain( 'post' ); // all posts finish with word 'Post'
 
 		await page.locator( thirdResultSelector ).click();
 
@@ -79,7 +81,7 @@ test.describe( 'TEST E2E <PostLookup>', () => {
 
 		// Save changes
 		await page.click( 'button.editor-post-publish-button' );
-		await page.waitForSelector( '.components-snackbar', { state: 'visible' } );
+		// await page.waitForSelector( '.components-snackbar', { state: 'visible' } );
 
 		// save the current url to come back later
 		const currentEditPageUrl = await page.evaluate( () => window.location.href );

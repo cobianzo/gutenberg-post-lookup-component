@@ -18,7 +18,7 @@ Technologies I want to use:
 This component is going to be a Text lookup input field. When typing in the input field, it will debounce the input before starting to look up. In the look up, it will search for the posts containing in their title the string that has been typed (the results will be trimmed to a max of 10). Then the user can use the arrows to select any of the results, when clicking return, that post id will be selected, the input will be cleared, and the post Title will be shown below the input.
 It will also receive two mandatory props:
 `selectedPostId` as the ID of the current post, if any.
-`updateSelectedPostId = ( postId ) => void`, and it's responsability of the parent to update the `selectedPostId` property when it's called.
+`onChange = ( postId ) => void`, and it's responsability of the parent to update the `selectedPostId` property when it's called.
 
 # First step:
 
