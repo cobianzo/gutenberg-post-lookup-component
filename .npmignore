@@ -1,3 +1,6 @@
 # the block is only for teesting, we dont' distribute it.
 /build
 /src/test-block
+
+README.backup.md
+README.npm.md

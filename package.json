@@ -20,7 +20,8 @@
 		"test:e2e": "playwright test",
 		"lint:js": "wp-scripts lint-js './src/**/*.{js,jsx,ts,tsx}'",
 		"lint:css": "wp-scripts lint-style './src/**/*.{css,scss}'",
-		"lint": "npm run lint:js && npm run lint:css",
+		"lint:php": "composer lint",
+		"lint": "npm run lint:js && npm run lint:css && npm run lint:php",
 		"prepublishOnly": "cp README.md README.backup.md && cp README.npm.md README.md",
 		"publish": "npm publish"
 	},
