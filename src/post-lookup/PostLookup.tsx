@@ -19,21 +19,16 @@ import type { WPPost } from './types';
 interface PostLookupProps {
 	selectedPostId: number | null;
 	postType?: string;
-	updateSelectedPostId: ( postId: number | null ) => void;
+	onChange: ( postId: number | null ) => void;
 }
 
 /**
- * The Component ========================
- * Usage: <PostLookup selectedPostId={<yourPostId}>} updateSelectedPostId={<your-fn>} />
- *
- * @param {PostLookupProps}                 props
- * @param {number | null}                   props.selectedPostId
- * @param {(postId: number | null) => void} props.updateSelectedPostId
- * @return {JSX.Element}
- * =====================================================
+ * The Component ======================================
+ * Usage: <PostLookup selectedPostId={<yourPostId}>} onChange={<your-fn>} />
+ * @param props
  */
 const PostLookup: React.FC< PostLookupProps > = ( props ) => {
-	const { selectedPostId, postType = 'post', updateSelectedPostId } = props;
+	const { selectedPostId, postType = 'post', onChange } = props;
 
 	// STATES ============= ============= =============
 	const [ searchTerm, setSearchTerm ] = useState< string | null >( null );
@@ -62,7 +57,7 @@ const PostLookup: React.FC< PostLookupProps > = ( props ) => {
 	}, [] );
 
 	const handleSelectPost = ( postId: number ) => {
-		updateSelectedPostId( postId );
+		onChange( postId );
 		setSearchTerm( null );
 	};
 
@@ -94,7 +89,7 @@ const PostLookup: React.FC< PostLookupProps > = ( props ) => {
 							{ selectedPostObject.title.rendered }
 						</button>
 						{ selectedPostId && selectedPostId > 0 ? (
-							<XButton onClick={ () => props.updateSelectedPostId( 0 ) } />
+							<XButton onClick={ () => props.onChange( 0 ) } />
 						) : '' }
 					</div>
 				</div>

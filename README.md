@@ -12,6 +12,8 @@
 - Setup ad repo with continous integration, executing tests using webhooks in git.
 - Finish the e2e testing.
 - Accept arrows up and down to select one of the options of the dropdown.
+- Create a changelog.
+- TOFIX: The component works in the sidebar, but not inside the editor.
 
 References from other repos:
 
@@ -47,7 +49,8 @@ Assuming that you have a block with an attribute called `favPost` (type number)
         <PanelBody>
             <PostLookup
                 selectedPostId={ props.attributes.favPost }
-                updateSelectedPostId={ ( newPostId ) =>
+                postType='post'
+                onChange={ ( newPostId ) =>
                     props.setAttributes( {
                         favPost: newPostId || 0,
                     } )
@@ -118,7 +121,7 @@ Use `docker ps` to confirm the 4 containers are running.
         -   `npm run lint:js src/index.ts`
         -   `npm run lint:js src/index.ts -- --fix`
     -   ✅ same with css files
-        -   `npm run lint:jcss src/index.ts`
+        -   `npm run lint:css`
 
 In VSCode, sometimes you'll need to add the setting in your workspace:
 

@@ -71,7 +71,7 @@ const Edit = ( props: BlockEditProps<BlockAttributes> ): JSX.Element | null => {
 						<PostLookup
 							selectedPostId={ postID }
 							postType={ postType }
-							updateSelectedPostId={ ( newPostId ) =>
+							onChange={ ( newPostId ) =>
 								setAttributes( {
 									postID: newPostId || 0,
 									postType: postType || 'post',

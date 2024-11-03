@@ -44,20 +44,15 @@ __webpack_require__.r(__webpack_exports__);
 //Types
 
 /**
- * The Component ========================
- * Usage: <PostLookup selectedPostId={<yourPostId}>} updateSelectedPostId={<your-fn>} />
- *
- * @param {PostLookupProps}                 props
- * @param {number | null}                   props.selectedPostId
- * @param {(postId: number | null) => void} props.updateSelectedPostId
- * @return {JSX.Element}
- * =====================================================
+ * The Component ======================================
+ * Usage: <PostLookup selectedPostId={<yourPostId}>} onChange={<your-fn>} />
+ * @param props
  */
 const PostLookup = props => {
   const {
     selectedPostId,
     postType = 'post',
-    updateSelectedPostId
+    onChange
   } = props;
 
   // STATES ============= ============= =============
@@ -91,7 +86,7 @@ const PostLookup = props => {
     setSearchTerm(value);
   }, []);
   const handleSelectPost = postId => {
-    updateSelectedPostId(postId);
+    onChange(postId);
     setSearchTerm(null);
   };
 
@@ -121,7 +116,7 @@ const PostLookup = props => {
             className: "dashicons dashicons-edit"
           }), selectedPostObject.title.rendered]
         }), selectedPostId && selectedPostId > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_XButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
-          onClick: () => props.updateSelectedPostId(0)
+          onClick: () => props.onChange(0)
         }) : '']
       })]
     }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
@@ -521,7 +516,7 @@ const Edit = props => {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_post_lookup_PostLookup__WEBPACK_IMPORTED_MODULE_3__["default"], {
             selectedPostId: postID,
             postType: postType,
-            updateSelectedPostId: newPostId => setAttributes({
+            onChange: newPostId => setAttributes({
               postID: newPostId || 0,
               postType: postType || 'post'
             })

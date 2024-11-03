@@ -1,6 +1,6 @@
 {
 	"name": "@cobianzo/gutenberg-post-lookup-component",
-	"version": "1.1.5",
+	"version": "2.0.0",
 	"main": "dist/post-lookup.js",
 	"style": "dist/post-lookup.css",
 	"files": [
@@ -17,7 +17,9 @@
 		"test:e2e": "playwright test",
 		"lint:js": "wp-scripts lint-js './src/**/*.{js,jsx,ts,tsx}'",
 		"lint:css": "wp-scripts lint-style './src/**/*.{css,scss}'",
-		"lint": "npm run lint:js && npm run lint:css"
+		"lint": "npm run lint:js && npm run lint:css",
+		"prepublishOnly": "cp README.md README.backup.md && cp README.npm.md README.md",
+		"publish": "npm publish"
 	},
 	"keywords": [
 		"gutenberg",
@@ -25,8 +27,8 @@
 		"component"
 	],
 	"author": "@cobianzo",
-	"license": "ISC",
-	"description": "Code for an npm package that allows searching for posts in the Gutenberg editor",
+	"license": "MIT",
+	"description": "Code for an npm package that search dynamically for posts in the Gutenberg editor",
 	"engines": {
 		"node": ">=18.20.4",
 		"npm": ">=10.7.0"
